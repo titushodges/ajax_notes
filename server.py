@@ -37,12 +37,9 @@ def create():
     posts = mysql.query_db(return_query)
     return render_template('partials/notes.html', posts=posts)
 
-@app.route('/posts/delete', methods=['POST'])
+@app.route('/posts/update', methods=['POST'])
 def create():
-    query = "SELECT id FROM notes WHERE title = ('{}') AND description = ('{}') LIMIT 1".format(request.form['title'], request.form['note'])
-    noteid = mysql.query_db(query)
-    theid = noteid[0]['id']
-    query = "DELETE FROM notes WHERE id = ('{}')".format(theid)
+    query = "UPDATE notes SET description = ('{}') WHERE id = ('{}')".format(request.form['note'], request.form['id'])
     mysql.query_db(query)
     return_query = "SELECT * FROM notes"
     posts = mysql.query_db(return_query)

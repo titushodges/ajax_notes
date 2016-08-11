@@ -26,9 +26,8 @@
             <input type="submit" value="Delete">
           </form>
           <form action="/notes/update" method="post">
-            <p>
               <textarea name="note" placeholder="Enter description here...">{{ note['description'] }}</textarea>
-            </p>
+              <input type="submit" value="Submit">
           </form>
         </div>
       {% endfor %}

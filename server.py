@@ -19,7 +19,7 @@ def index_json():
 def index_html():
     query = "SELECT * FROM notes"
     posts = mysql.query_db(query)
-    return render_template('partials/posts.html', posts=posts)
+    return render_template('partials/notes.html', posts=posts)
 
 @app.route('/posts/create', methods=['POST'])
 def create():

@@ -30,7 +30,7 @@ def create():
     return render_template('partials/notes.html', posts=posts)
 
 @app.route('/posts/delete', methods=['POST'])
-def create():
+def delete():
     query = "DELETE FROM notes WHERE id = ('{}')".format(request.form['id'])
     mysql.query_db(query)
     return_query = "SELECT * FROM notes"
@@ -38,7 +38,7 @@ def create():
     return render_template('partials/notes.html', posts=posts)
 
 @app.route('/posts/update', methods=['POST'])
-def create():
+def update():
     query = "UPDATE notes SET description = ('{}') WHERE id = ('{}')".format(request.form['note'], request.form['id'])
     mysql.query_db(query)
     return_query = "SELECT * FROM notes"

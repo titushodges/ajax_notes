@@ -7,8 +7,8 @@
     <script>
       $(document).ready(function(){
         $('form').submit(function(){
-          $.post('/posts/create', $(this).serialize(), function(res) {
-            $('#posts').html(res);
+          $.post('/notes/create', $(this).serialize(), function(res) {
+            $('#notes').html(res);
           });
           return false;
         });
@@ -17,19 +17,25 @@
   </head>
   <body>
     <h1>My Posts</h1>
-    <form action="/posts/create" method="post">         <!--Sorry for not styling, I was sick and I'm catching up so I just made sure I got the core concept down.-->
-       <p>
-          <label>Add a note: </label>
-          <textarea name="posts"></textarea>
-       </p>
-       <input type="submit" value="Post It!">
-    </form>
-    <div id="posts">
-      {% for post in posts %}
-        <div class='quote'>
-          <p>{{ post['description'] }}</p>
+    <div id="notes">
+      {% for note in notes %}
+        <div class='note'>
+          <h3>{{ note['title'] }}</h3>
+          <form action="/notes/delete" method="post">
+            <input type="text" name="id" value="{{ note['id'] }}">
+            <input type="submit" value="Delete">
+          </form>
+          <form action="/notes/update" method="post">
+            <p>
+              <textarea name="note" placeholder="Enter description here...">{{ note['description'] }}</textarea>
+            </p>
+          </form>
         </div>
       {% endfor %}
     </div>
+    <form action="/notes/create" method="post">
+      <input type="text" name="title" placeholder="Insert note title here... ">
+      <input type="submit" value="Add Note">
+    </form>
   </body>
 </html>

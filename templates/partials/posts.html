@@ -1,5 +1,14 @@
-{% for post in posts %}
-  <div class='post'>
-    <p>{{ post['description'] }}</p>
-  </div>
+{% for note in notes %}
+	<div class='note'>
+		<h3>{{ note['title'] }}</h3>
+		<form action="/notes/delete" method="post">
+			<input type="text" name="id" value="{{ note['id'] }}">
+			<input type="submit" value="Delete">
+		</form>
+		<form action="/notes/update" method="post">
+			<p>
+				<textarea name="note" placeholder="Enter description here...">{{ note['description'] }}</textarea>
+			</p>
+		</form>
+	</div>
 {% endfor %}
